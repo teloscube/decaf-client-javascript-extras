@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-if [ -f "tsconfig.json" ]; then
+if [ -n "$DECAF_JS_SKIP_POSTINSTALL" ]; then
   echo "Local Env detected. Skipping postinstall phase."
   exit 0
 fi
