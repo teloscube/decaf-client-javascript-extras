@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": [
+      "ESNext",
+    ],
+    "declaration": true,
+    "declarationDir": "dist",
+    "declarationMap": true,
+    "downlevelIteration": false,
+    "outDir": "dist",
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowJs": false,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "baseUrl": "./src",
+    "paths": {
+      "tslib": [
+        "node_modules/tslib/tslib.d.ts"
+      ]
+    },
+    "plugins": [],
+  },
+  "include": [
+    "src/**/*",
+    "node_modules/microbundle/index.d.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/__tests__",
+  ]
+}
