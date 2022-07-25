@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
+# HUSKY to zero to disable husky
+
+
 if [ -n "$DECAF_JS_SKIP_POSTINSTALL" ]; then
-  echo "Local Env detected. Skipping postinstall phase."
+  yarn husky install
+  echo "Local Env detected. Skipping dist/ relocation..."
   exit 0
 fi
 

@@ -20,7 +20,7 @@
     "build": "rm -rf dist && microbundle && yarn make:docs",
     "make:docs": "typedoc",
     "deploy:docs": "gh-pages -d ./docs",
-    "prepare": "yarn build && husky install && ./postinstall.sh"
+    "prepare": "yarn build && ./postinstall.sh"
   },
   "engines": {
     "node": ">=10",
