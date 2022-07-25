@@ -14,10 +14,10 @@
   "main": "./dist/index.js",
   "module": "./dist/index.module.js",
   "unpkg": "./dist/index.umd.js",
-  "types": "dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "start": "microbundle --watch",
-    "build": "rm -rf dist && microbundle && yarn make:docs",
+    "build": "rm -rf dist && microbundle ./src/**/* && yarn make:docs",
     "make:docs": "typedoc",
     "deploy:docs": "gh-pages -d ./docs",
     "prepare": "yarn build && ./postinstall.sh"
