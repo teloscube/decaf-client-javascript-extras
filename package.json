@@ -10,20 +10,18 @@
     "type": "git"
   },
   "homepage": "https://github.com/teloscube/decaf-client-javascript-extras",
-  "source": "src/index.ts",
+  "source": "./src/index.ts",
   "main": "./dist/index.js",
   "module": "./dist/index.module.js",
   "unpkg": "./dist/index.umd.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "start": "microbundle --watch",
-    "build": "microbundle && yarn make:docs",
+    "build": "rm -rf dist && microbundle && yarn make:docs",
     "make:docs": "typedoc",
     "deploy:docs": "gh-pages -d ./docs",
-    "prepare": "yarn build && husky install"
+    "prepare": "yarn build && husky install",
+    "postinstall": "./postinstall.sh"
   },
   "engines": {
     "node": ">=10",
