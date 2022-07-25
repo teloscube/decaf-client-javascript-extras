@@ -1,5 +1,8 @@
 import { Id } from '../prelude';
 
+/**
+ * Type of Valuation Report.
+ */
 export type ValuationReportType = {
   id: Id;
   name: string;
@@ -7,13 +10,15 @@ export type ValuationReportType = {
   type: string;
 };
 
-export function getValuationReportTypes(): ValuationReportType[] {
-  return [
-    {
-      id: 'default',
-      name: 'Default',
-      description: 'Default valuation report',
-      type: 'default',
-    },
-  ];
+/**
+ * generates valuation report.
+ * @returns {ValuationReportType}
+ */
+export function getValuationReport(): ValuationReportType {
+  return {
+    id: 'default',
+    name: 'Default',
+    description: 'Default valuation report',
+    type: 'default',
+  };
 }
