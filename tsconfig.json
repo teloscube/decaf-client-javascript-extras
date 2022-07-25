@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
+    "module": "CommonJS",
     "lib": [
       "ESNext",
     ],
@@ -28,12 +28,10 @@
     "plugins": [],
   },
   "include": [
-    "src/**/*",
-    "node_modules/microbundle/index.d.ts",
+    "src/",
+    // "node_modules/microbundle/index.d.ts",
   ],
   "exclude": [
-    "node_modules",
-    "dist",
-    "src/__tests__",
+    "!src/",
   ]
 }
