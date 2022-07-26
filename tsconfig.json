@@ -26,6 +26,10 @@
     "noUncheckedIndexedAccess": true,
     "esModuleInterop": true
   },
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.ts"
+  ],
   "exclude": [
     "docs",
     "lib"
