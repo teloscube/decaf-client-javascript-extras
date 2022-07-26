@@ -12,7 +12,6 @@
   "homepage": "https://github.com/teloscube/decaf-client-javascript-extras",
   "source": "./src/index.ts",
   "main": "./index.js",
-  "module": "./es/index.js",
   "types": "./index.d.ts",
   "exports": {
     ".": {
