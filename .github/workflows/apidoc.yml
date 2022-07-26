@@ -2,9 +2,7 @@ name: Deploy API Docs
 
 on:
   push:
-    branches: ['develop', 'main']
-  pull_request:
-    branches: ['develop', 'main']
+    branches: ['main']
 
 jobs:
   build:
