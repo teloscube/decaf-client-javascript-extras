@@ -23,7 +23,7 @@
     "build": "rm -rf dist && microbundle && yarn make:docs",
     "make:docs": "typedoc",
     "deploy:docs": "gh-pages -d ./docs",
-    "prepare": "yarn build && cp README.md LICENSE package.json dist/"
+    "prepare": "yarn build && ./postinstall.sh"
   },
   "engines": {
     "node": ">=10",
