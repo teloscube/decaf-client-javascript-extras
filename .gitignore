@@ -129,7 +129,7 @@ public/
 # Ignore all local history of files
 .history
 
-dist
+lib
 
 ## Ignore other build artifacts:
 /docs

@@ -1,4 +1,1 @@
-/**
- * Bir.
- */
-export const bir: number = 1;
+export const ONE = 1;
