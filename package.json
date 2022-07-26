@@ -17,7 +17,7 @@
     "lib"
   ],
   "scripts": {
-    "start": "microbundle --watch",
+    "start": "tsc --watch",
     "build": "rm -rf lib && tsc && tsc -p tsconfig.es.json && yarn make:docs",
     "make:docs": "typedoc",
     "deploy:docs": "gh-pages -d ./docs",
@@ -48,7 +48,6 @@
     "gh-pages": "^4.0.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.3",
-    "microbundle": "^0.15.0",
     "prettier": "^2.7.1",
     "typedoc": "^0.23.9",
     "typescript": "^4.7.4"
