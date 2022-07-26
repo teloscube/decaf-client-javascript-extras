@@ -1,37 +1,33 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "CommonJS",
+    "target": "es5",
+    "module": "commonjs",
     "lib": [
-      "ESNext",
+      "es2015",
+      "es2016",
+      "es2017",
+      "dom"
     ],
     "declaration": true,
-    "declarationDir": "dist",
-    "declarationMap": true,
-    "downlevelIteration": false,
-    "outDir": "dist",
-    "sourceMap": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "rootDir": "./src/",
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "alwaysStrict": true,
     "noFallthroughCasesInSwitch": true,
-    "allowJs": false,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "baseUrl": "./src",
-    "paths": {
-      "tslib": [
-        "node_modules/tslib/tslib.d.ts"
-      ]
-    },
-    "plugins": [],
+    "baseUrl": "./src/",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
+    "strict": true,
+    "isolatedModules": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true
   },
-  "include": [
-    "src/",
-    "node_modules/microbundle/index.d.ts",
-  ],
   "exclude": [
-    "!src/",
+    "docs",
+    "dist"
   ]
 }
