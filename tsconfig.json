@@ -9,7 +9,7 @@
       "dom"
     ],
     "declaration": true,
-    "outDir": "./dist",
+    "outDir": "./lib",
     "rootDir": "./src/",
     "strictNullChecks": true,
     "noImplicitThis": true,
@@ -28,6 +28,6 @@
   },
   "exclude": [
     "docs",
-    "dist"
+    "lib"
   ]
 }

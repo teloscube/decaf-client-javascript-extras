@@ -11,36 +11,14 @@
   },
   "homepage": "https://github.com/teloscube/decaf-client-javascript-extras",
   "source": "./src/index.ts",
-  "main": "./index.js",
-  "types": "./index.d.ts",
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./es/index.d.ts",
-        "default": "./es/index.js"
-      },
-      "require": {
-        "types": "./index.d.ts",
-        "default": "./index.js"
-      }
-    },
-    "./*": {
-      "import": {
-        "types": "./es/*.d.ts",
-        "default": "./es/*.js"
-      },
-      "require": {
-        "types": "./*.d.ts",
-        "default": "./*.js"
-      }
-    }
-  },
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
     "start": "microbundle --watch",
-    "build": "rm -rf dist && tsc && tsc -p tsconfig.es.json && yarn make:docs",
+    "build": "rm -rf lib && tsc && tsc -p tsconfig.es.json && yarn make:docs",
     "make:docs": "typedoc",
     "deploy:docs": "gh-pages -d ./docs",
-    "prepare": "yarn build && ./postinstall.sh"
+    "prepare": "yarn build"
   },
   "engines": {
     "node": ">=10",
