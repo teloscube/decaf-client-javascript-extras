@@ -1,0 +1,27 @@
+name: Deploy API Docs
+
+on:
+  push:
+    branches: ['develop', 'main']
+  pull_request:
+    branches: ['develop', 'main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: build and deploy docs ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+        env:
+          DECAF_JS_SKIP_POSTINSTALL: 1
+          HUSKY: 0
+      - run: yarn install --frozen-lockfile
+      - run: yarn make:docs
+      - run: yarn deploy:docs
