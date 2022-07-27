@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [],
+    "moduleResolution": "Node",
+    "declaration": true,
+    "outDir": "./lib",
+    "rootDir": "./src/",
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "alwaysStrict": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./src/",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
+    "strict": true,
+    "isolatedModules": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "docs",
+    "lib"
+  ]
+}
