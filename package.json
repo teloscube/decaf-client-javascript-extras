@@ -68,5 +68,8 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "dependencies": {
+    "@telostat/prelude": "^0.1.0"
   }
 }
