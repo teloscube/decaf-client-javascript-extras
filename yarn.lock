@@ -291,10 +291,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@telostat/prelude@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@telostat/prelude/-/prelude-0.1.0.tgz#1544b9a83a7e310c5ae4e37ff28316275e9cf646"
-  integrity sha512-ETAniIJgQ88+onUqL7EQ4hrb6iZwWcGm48dLXcVpGcB7T9raRGsbTltdX2jt5IrcP1qvfk1fMOWY2dyFd03QIw==
+"@telostat/prelude@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@telostat/prelude/-/prelude-0.1.1.tgz#85c2d72fca8ac28d57d307ee7fe7ccbf64bcdca4"
+  integrity sha512-uNS7a70ZtOHoiOknyRLwOU9AGylf/URYXEo7p5rYxa3YQ5ZjWdgqZR+eDHImjkIpxnMzba7mfpLRe+uo0yRf4w==
   dependencies:
     dayjs "^1.11.4"
     decimal.js "^10.3.1"
