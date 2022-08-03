@@ -22,11 +22,13 @@
     "prepare": "yarn build && ./postinstall.sh"
   },
   "engines": {
-    "node": ">=10",
-    "npm": ">=6"
+    "node": ">=14"
   },
   "peerDependencies": {
     "@decafhub/decaf-client": "~0.2"
+  },
+  "dependencies": {
+    "@telostat/prelude": "^0.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
@@ -68,8 +70,5 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "dependencies": {
-    "@telostat/prelude": "^0.1.0"
   }
 }
