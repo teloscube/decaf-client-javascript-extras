@@ -16,7 +16,7 @@
   "types": "./index.d.ts",
   "scripts": {
     "start": "tsc --watch",
-    "test": "jest --coverage",
+    "test": "jest",
     "build": "rm -rf lib && tsc && tsc -p tsconfig.es.json && yarn make:docs",
     "make:docs": "typedoc",
     "deploy:docs": "gh-pages -d ./docs",
