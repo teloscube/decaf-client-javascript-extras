@@ -1,4 +1,4 @@
-with import (fetchTarball https://github.com/NixOS/nixpkgs/archive/22.05.tar.gz) {};
+with import (fetchTarball https://github.com/NixOS/nixpkgs/archive/22.05.tar.gz) { };
 
 stdenv.mkDerivation {
   name = "decaf-client-javascript-extras";
@@ -16,4 +16,6 @@ stdenv.mkDerivation {
     ## Greet:
     figlet -w 999 -f standard "DECAF CLIENT EXTRAS DEV SHELL" | lolcat -S 179
   '';
+
+  DECAF_JS_SKIP_POSTINSTALL = "TRUE";
 }
