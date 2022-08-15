@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+if [ -f .env ]; then
+  source .env
+fi
+
 if [ -n "$DECAF_JS_SKIP_POSTINSTALL" ]; then
   yarn husky install
   echo "Local Env detected. Skipping lib/ relocation..."
