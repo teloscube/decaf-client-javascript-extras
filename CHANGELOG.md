@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.2](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.0.1...v0.0.2) (2022-08-19)
+
+
+### Bug Fixes
+
+* correct minimum investment type on portfolio valuation report ([c758823](https://github.com/teloscube/decaf-client-javascript-extras/commit/c758823145ae8d575b160727c1152bbb4a425ab3))
+
 ## 0.0.1 (2022-08-15)
 
 
