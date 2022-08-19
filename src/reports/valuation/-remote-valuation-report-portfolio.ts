@@ -102,7 +102,7 @@ export interface RemoteValuationShareClass {
   liquidity?: string;
   jurisdiction?: string;
   administrator?: string;
-  mininvestment?: string;
+  mininvestment?: number;
   subredperiod?: string;
   freqmngt?: number;
   freqperf?: number;
@@ -194,7 +194,7 @@ export function toShareClassValue(x: RemoteValuationShareClassValue): PortfolioV
       liquidity: sanitizedNonEmptyText(x.shareclass.liquidity),
       jurisdiction: sanitizedNonEmptyText(x.shareclass.jurisdiction),
       administrator: sanitizedNonEmptyText(x.shareclass.administrator),
-      minimumInvestment: sanitizedNonEmptyText(x.shareclass.mininvestment),
+      minimumInvestment: Maybe.fromNullable(x.shareclass.mininvestment),
       subscriptionRedemptionPeriod: sanitizedNonEmptyText(x.shareclass.subredperiod),
       managementFeeFrequency: Maybe.fromNullable(x.shareclass.freqmngt),
       performanceFeeFrequency: Maybe.fromNullable(x.shareclass.freqperf),
