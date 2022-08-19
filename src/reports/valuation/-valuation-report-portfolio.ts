@@ -50,7 +50,7 @@ export interface PortfolioValuationReportShareClass {
   liquidity: Maybe<string>;
   jurisdiction: Maybe<string>;
   administrator: Maybe<string>;
-  minimumInvestment: Maybe<string>;
+  minimumInvestment: Maybe<number>;
   subscriptionRedemptionPeriod: Maybe<string>;
   managementFeeFrequency: Maybe<number>;
   performanceFeeFrequency: Maybe<number>;
