@@ -242,8 +242,8 @@ export function toShareClassValue(x: RemoteValuationShareClassValue): PortfolioV
     sharecountPrev: asDecimal(x.sharecount_prev),
     sharecountCurr: asDecimal(x.sharecount_curr),
     sharecountDiff: asDecimal(x.sharecount_diff),
-    pxRefCcy: asDecimal(x.px_refccy),
-    pxClsCcy: asDecimal(x.px_clsccy),
+    pxRefCcy: maybeDecimal(x.px_refccy),
+    pxClsCcy: maybeDecimal(x.px_clsccy),
     ytdExt: maybeDecimal(x.ytdext),
     ytdInt: maybeDecimal(x.ytdint),
   };
