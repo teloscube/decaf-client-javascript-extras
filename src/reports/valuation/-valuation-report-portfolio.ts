@@ -29,8 +29,8 @@ export interface PortfolioValuationReportShareClassValue {
   sharecountPrev: Decimal;
   sharecountCurr: Decimal;
   sharecountDiff: Decimal;
-  pxRefCcy: Decimal;
-  pxClsCcy: Decimal;
+  pxRefCcy: Maybe<Decimal>;
+  pxClsCcy: Maybe<Decimal>;
   ytdExt: Maybe<Decimal>;
   ytdInt: Maybe<Decimal>;
 }
