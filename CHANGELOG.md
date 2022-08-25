@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.0.2...v0.0.3) (2022-08-25)
+
+
+### Bug Fixes
+
+* pxRefCcy and pxClsCcy types are wrong in share class values ([1862e1a](https://github.com/teloscube/decaf-client-javascript-extras/commit/1862e1abde3d6e5f8a539233e1408557e9465b07)), closes [#16](https://github.com/teloscube/decaf-client-javascript-extras/issues/16)
+
 ## [0.0.2](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.0.1...v0.0.2) (2022-08-19)
 
 
