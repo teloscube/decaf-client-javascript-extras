@@ -14,10 +14,6 @@
   "main": "./index.js",
   "module": "./es/index.js",
   "types": "./index.d.ts",
-  "files": [
-    "lib",
-    "postinstall.sh"
-  ],
   "scripts": {
     "start": "tsc --watch",
     "test": "jest",
