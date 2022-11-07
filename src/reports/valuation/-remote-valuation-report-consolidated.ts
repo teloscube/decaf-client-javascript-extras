@@ -103,7 +103,7 @@ export function recompileConsolidatedValuationReport(
 
 /**
  * Attempts to retrieve remote consolidated valuation report, compiles it to
- * [[ConsolidatedValuationReport]] and return it.
+ * {@link ConsolidatedValuationReport} and return it.
  *
  * @param client DECAF Barista client.
  * @param query Remote consolidated valuation report endpoint query parameters.

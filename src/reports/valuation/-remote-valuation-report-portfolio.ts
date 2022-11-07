@@ -276,7 +276,7 @@ export function recompilePortfolioValuationReport(
 
 /**
  * Attempts to retrieve remote portfolio valuation report, compiles it to
- * [[PortfolioValuationReport]] and return it.
+ * {@link PortfolioValuationReport} and return it.
  *
  * @param client DECAF Barista client.
  * @param query Remote portolio valuation report endpoint query parameters.
