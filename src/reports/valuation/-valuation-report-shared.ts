@@ -70,7 +70,7 @@ export interface ValuationReportHoldingClassificationNode {
 
 /**
  * Type definition for base valuation report holding (shared by
- * [[ValuationReportHolding]] and [[ValuationReportChildHolding]]).
+ * {@link ValuationReportHolding} and {@link ValuationReportChildHolding}).
  */
 export interface BaseValuationReportHolding {
   artifact: ValuationReportArtifact;
