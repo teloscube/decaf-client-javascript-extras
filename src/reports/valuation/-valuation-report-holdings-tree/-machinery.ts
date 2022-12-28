@@ -2,6 +2,7 @@ import { Decimal, safeDiv, sumDecimals, Tuple, zero } from '@telostat/prelude';
 import { Just, Maybe, Nothing } from 'purify-ts';
 import { List } from 'purify-ts/List';
 import { ValuationReportHolding, ValuationReportHoldingClassification } from '../-valuation-report-shared';
+import { ArtifactTypeId } from '../../../commons';
 import { ValuationReportHoldingsTreeNode, ValuationReportHoldingsTreeNodeValue } from './-types';
 import { compareStringArrays } from './-utils';
 
@@ -36,10 +37,20 @@ export function updateTotals(
   const absValue = sumDecimals(holdings.map((x) => x.valuation.value.abs.ref)).add(
     sumDecimals(children.map((x) => x.totals.absValue))
   );
-  const netExposure = sumDecimals(holdings.map((x) => x.valuation.exposure.net.ref)).add(
+
+  const holdingsForExposure = holdings.filter(
+    (h) =>
+      !(
+        h.artifact.type.id === ('CCY' as unknown as ArtifactTypeId) ||
+        h.artifact.type.id === ('DEPO' as unknown as ArtifactTypeId) ||
+        h.artifact.type.id === ('LOAN' as unknown as ArtifactTypeId)
+      )
+  );
+
+  const netExposure = sumDecimals(holdingsForExposure.map((x) => x.valuation.exposure.net.ref)).add(
     sumDecimals(children.map((x) => x.totals.netExposure))
   );
-  const absExposure = sumDecimals(holdings.map((x) => x.valuation.exposure.abs.ref)).add(
+  const absExposure = sumDecimals(holdingsForExposure.map((x) => x.valuation.exposure.abs.ref)).add(
     sumDecimals(children.map((x) => x.totals.absExposure))
   );
   const pnl = sumDecimals(holdings.map((x) => x.pnl)).add(sumDecimals(children.map((x) => x.totals.pnl)));
