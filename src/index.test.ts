@@ -1,8 +1,12 @@
 import { buildDecafClient, DecafClient, gql } from '@decafhub/decaf-client';
-import { mk, PDateTime } from '@telostat/prelude';
+import { mk, PDateTime, safeDiv, zero } from '@telostat/prelude';
 import { fail } from 'assert';
 import { PortfolioId } from './commons';
-import { fetchRemotePortfolioValuationReport } from './reports/valuation/-remote-valuation-report-portfolio';
+import { makeValuationReportHoldingsTree } from './reports/valuation/';
+import {
+  fetchPortfolioValuationReport,
+  fetchRemotePortfolioValuationReport,
+} from './reports/valuation/-remote-valuation-report-portfolio';
 
 const API_URL = process.env.TESTING_API_URL;
 const API_KEY = process.env.TESTING_API_KEY;
@@ -61,6 +65,31 @@ describe('Main', () => {
           `Success! remote valuation for portfolio ID ${value.portfolio.id} is reported at ${value.reported}`
         );
         expect(value).toBeDefined();
+      },
+    });
+  });
+
+  test('get a portfolio report, check the tree', async () => {
+    const eValue = await fetchPortfolioValuationReport(client, {
+      portfolio: portfolioId,
+      date: PDateTime(new Date()).format('YYYY-MM-DD'),
+      dateType: 'settlement',
+      currency: mk('EUR'),
+    });
+    eValue.caseOf({
+      Left: (e) => fail('Error while fetching the remote portfolio report: ' + e.msg),
+      Right: (value) => {
+        console.log(`Success! remote valuation for portfolio ID ${value.portfolio.id} is reported at ${value.asof}`);
+
+        expect(value).toBeDefined();
+
+        const nav = value.figures.nav;
+        const inv = value.figures.investment;
+        const holdings = value.holdings;
+        const tree = makeValuationReportHoldingsTree(nav, inv, holdings);
+
+        expect(tree).toBeDefined();
+        expect(safeDiv(tree.totals.netExposure, nav).orDefault(zero)).toEqual(tree.totals.netExposureRatio);
       },
     });
   });
