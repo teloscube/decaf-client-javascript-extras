@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.5](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.0.4...v0.0.5) (2022-12-28)
+
+
+### Bug Fixes
+
+* exclude cash holdings from total exposure calculation ([09d7133](https://github.com/teloscube/decaf-client-javascript-extras/commit/09d7133515d9670dc3c5a641dd84d1e57fa5d5ee))
+
 ## [0.0.4](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.0.3...v0.0.4) (2022-11-07)
 
 
