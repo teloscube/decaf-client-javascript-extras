@@ -1,16 +1,16 @@
 import {
-  asDecimal,
   CustomError,
   Decimal,
+  decimalFromNullable,
   Either,
   Just,
   Maybe,
-  maybeDecimal,
   Right,
   safeDiv,
   sanitizedNonEmptyText,
   SDate,
   SDateTime,
+  unsafeDecimal,
   zero,
 } from '@telostat/prelude';
 import { CurrencyCode, DateType, DecafArtifactId, DecafArtifactTypeId } from '../../commons';
@@ -179,7 +179,7 @@ export function toArtifact(x: RemoteValuationReportArtifact): ValuationReportArt
     symbol: x.symbol,
     name: sanitizedNonEmptyText(x.name),
     ccy: Maybe.fromNullable(x.ccy),
-    quantity: asDecimal(x.quantity),
+    quantity: unsafeDecimal(x.quantity),
     country: sanitizedNonEmptyText(x.country),
     issuer: sanitizedNonEmptyText(x.issuer),
     sector: sanitizedNonEmptyText(x.sector),
@@ -195,14 +195,17 @@ export function toArtifact(x: RemoteValuationReportArtifact): ValuationReportArt
 export function toAccrual(x: RemoteValuationReportAccrual): ValuationReportAccrual {
   return {
     name: x.name,
-    value: asDecimal(x.value),
+    value: unsafeDecimal(x.value),
     accounts: x.accounts.map((y) => ({
       account: y.account,
-      value: asDecimal(y.value),
+      value: unsafeDecimal(y.value),
       accruals: y.accruals.map((z) => ({
         artifact: toArtifact(z.artifact),
         ccy: z.ccy,
-        value: { org: asDecimal(z.value.org || 0), ref: asDecimal(z.value.ref || 0) },
+        value: {
+          org: decimalFromNullable(z.value.org).orDefault(zero),
+          ref: decimalFromNullable(z.value.ref).orDefault(zero),
+        },
       })),
     })),
   };
@@ -210,14 +213,14 @@ export function toAccrual(x: RemoteValuationReportAccrual): ValuationReportAccru
 
 export function toOrgRef(x: { org?: number; ref?: number }): ValuationReportFigureOrgRef {
   return {
-    org: maybeDecimal(x.org).orDefault(zero),
-    ref: maybeDecimal(x.ref).orDefault(zero),
+    org: decimalFromNullable(x.org).orDefault(zero),
+    ref: decimalFromNullable(x.ref).orDefault(zero),
   };
 }
 
 export function toMaybeOrgRef(x?: { org?: number; ref?: number }): Maybe<ValuationReportFigureOrgRef> {
   return Maybe.fromNullable(x).chain(({ org, ref }) =>
-    maybeDecimal(org).chain((o) => maybeDecimal(ref).chain((r) => Just({ org: o, ref: r })))
+    decimalFromNullable(org).chain((o) => decimalFromNullable(ref).chain((r) => Just({ org: o, ref: r })))
   );
 }
 
@@ -227,7 +230,7 @@ export function toBaseHolding(
 ): BaseValuationReportHolding {
   return {
     artifact: toArtifact(x.artifact),
-    quantity: asDecimal(x.quantity),
+    quantity: unsafeDecimal(x.quantity),
     investment: {
       px: toOrgRef(x.investment.px),
       txncosts: toMaybeOrgRef(x.investment.txncosts),
@@ -246,12 +249,12 @@ export function toBaseHolding(
         abs: toOrgRef(x.valuation.exposure.abs),
       },
     },
-    valuePercentage: safeDiv(maybeDecimal(x.valuation.value.net.ref).orDefault(zero), nav),
-    netExposurePercentage: safeDiv(maybeDecimal(x.valuation.exposure.net.ref).orDefault(zero), nav),
-    absExposurePercentage: safeDiv(maybeDecimal(x.valuation.exposure.abs.ref).orDefault(zero), nav),
-    change: maybeDecimal(x.change),
-    pnl: maybeDecimal(x.pnl).orDefault(zero),
-    pnlToInvestment: maybeDecimal(x.pnl_to_investment),
+    valuePercentage: safeDiv(decimalFromNullable(x.valuation.value.net.ref).orDefault(zero), nav),
+    netExposurePercentage: safeDiv(decimalFromNullable(x.valuation.exposure.net.ref).orDefault(zero), nav),
+    absExposurePercentage: safeDiv(decimalFromNullable(x.valuation.exposure.abs.ref).orDefault(zero), nav),
+    change: decimalFromNullable(x.change),
+    pnl: decimalFromNullable(x.pnl).orDefault(zero),
+    pnlToInvestment: decimalFromNullable(x.pnl_to_investment),
     opendate: x.opendate,
     lastdate: x.lastdate,
   };
@@ -282,7 +285,7 @@ export function toHolding(nav: Decimal, x: RemoteValuationReportHolding): Valuat
  * report.
  */
 export function recompileBaseValuationReport(x: RemoteBaseValuationReport): Either<CustomError, BaseValuationReport> {
-  const nav = maybeDecimal(x.nav).orDefault(zero);
+  const nav = decimalFromNullable(x.nav).orDefault(zero);
 
   const report: BaseValuationReport = {
     asof: x.reported,
@@ -292,20 +295,20 @@ export function recompileBaseValuationReport(x: RemoteBaseValuationReport): Eith
     accounts: x.accounts,
     holdings: x.holdings.map((rh) => toHolding(nav, rh)),
     accruals: x.accruals.map(toAccrual),
-    fxRates: x.fxrates.map((r) => ({ ccy1: r.ccy1, ccy2: r.ccy2, value: asDecimal(r.value), asof: r.asof })),
+    fxRates: x.fxrates.map((r) => ({ ccy1: r.ccy1, ccy2: r.ccy2, value: unsafeDecimal(r.value), asof: r.asof })),
     figures: {
-      investment: maybeDecimal(x.investment).orDefault(zero),
+      investment: decimalFromNullable(x.investment).orDefault(zero),
       valuation: {
-        net: maybeDecimal(x.valuation_net).orDefault(zero),
-        abs: maybeDecimal(x.valuation_abs).orDefault(zero),
+        net: decimalFromNullable(x.valuation_net).orDefault(zero),
+        abs: decimalFromNullable(x.valuation_abs).orDefault(zero),
       },
-      accrued: maybeDecimal(x.accrued).orDefault(zero),
-      liabilities: maybeDecimal(x.liabilities).orDefault(zero),
-      gav: maybeDecimal(x.gav).orDefault(zero),
+      accrued: decimalFromNullable(x.accrued).orDefault(zero),
+      liabilities: decimalFromNullable(x.liabilities).orDefault(zero),
+      gav: decimalFromNullable(x.gav).orDefault(zero),
       nav,
-      aum: maybeDecimal(x.aum).orDefault(zero),
-      pnl: maybeDecimal(x.pnl).orDefault(zero),
-      pnlToInvestment: maybeDecimal(x.pnl_to_investment),
+      aum: decimalFromNullable(x.aum).orDefault(zero),
+      pnl: decimalFromNullable(x.pnl).orDefault(zero),
+      pnlToInvestment: decimalFromNullable(x.pnl_to_investment),
     },
   };
 
