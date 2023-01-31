@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.1.0](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.0.5...v0.1.0) (2023-01-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* The underlying types of DECAF record identifiers have been changed to a simpler, tagged type definitions. Call-sites should use `mkDecafRecordId` constructor and `unDecafRecordId` de-constructor OR direct type casting when producing and consuming such values.
+* We are now adopting the convention that constants are defined via all-uppercase, snake-case symbols.
+* The underlying type of CurrencyCode has been changed to a simpler, tagged type definition. Call-sites should use either of:
+
+### Code Refactoring
+
+* change type of CurrencyCode, use regexp for validation ([b4915aa](https://github.com/teloscube/decaf-client-javascript-extras/commit/b4915aace037ce9e56be9161ea730529a7d31536))
+* change type of DECAF record identifiers ([a2f48c0](https://github.com/teloscube/decaf-client-javascript-extras/commit/a2f48c00525714ffa20ecdca2900b842581ede43))
+* rename constant dateTypes to DATE_TYPES ([7801283](https://github.com/teloscube/decaf-client-javascript-extras/commit/7801283bdc72463bbb243f03c5bb10ef77c5dd7a))
+
 ## [0.0.5](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.0.4...v0.0.5) (2022-12-28)
 
 
