@@ -1,6 +1,4 @@
-import { Decimal, safeDiv, sumDecimals, Tuple, zero } from '@telostat/prelude';
-import { Just, Maybe, Nothing } from 'purify-ts';
-import { List } from 'purify-ts/List';
+import { Decimal, Just, List, Maybe, Nothing, safeDiv, sumDecimals, Tuple, zero } from '@telostat/prelude';
 import { ValuationReportHolding, ValuationReportHoldingClassification } from '../-valuation-report-shared';
 import { DecafArtifactTypeId } from '../../../commons';
 import { ValuationReportHoldingsTreeNode, ValuationReportHoldingsTreeNodeValue } from './-types';
