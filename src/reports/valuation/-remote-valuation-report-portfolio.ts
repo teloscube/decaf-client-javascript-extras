@@ -1,28 +1,28 @@
 import { DecafClient } from '@decafhub/decaf-client';
 import {
-  asDecimal,
   CustomError,
   customError,
+  decimalFromNullable,
   Either,
   Left,
   Maybe,
-  maybeDecimal,
   Right,
   sanitizedNonEmptyText,
   SDate,
   SDateTime,
+  unsafeDecimal,
   zero,
 } from '@telostat/prelude';
 import {
-  ActionId,
   CurrencyCode,
   DateType,
-  ExternalValuationId,
-  OhlcSeriesId,
-  PortfolioId,
-  PrincipalId,
-  ShareClassFeeScheduleId,
-  ShareClassId,
+  DecafActionId,
+  DecafExternalValuationId,
+  DecafOhlcSeriesId,
+  DecafPortfolioId,
+  DecafPrincipalId,
+  DecafShareClassFeeScheduleId,
+  DecafShareClassId,
 } from '../../commons';
 import { recompileBaseValuationReport, RemoteBaseValuationReport } from './-remote-valuation-report-shared';
 import { PortfolioValuationReport, PortfolioValuationReportShareClassValue } from './-valuation-report-portfolio';
@@ -50,7 +50,7 @@ export interface PortfolioValuationReportQuery {
   /**
    * Portfolio the valuation report is requested for.
    */
-  portfolio: PortfolioId;
+  portfolio: DecafPortfolioId;
 }
 
 /**
@@ -88,13 +88,13 @@ export interface RemoteValuationShareClassValue {
  * Type definition for share class on the remote portfolio valuation report.
  */
 export interface RemoteValuationShareClass {
-  id: ShareClassId;
+  id: DecafShareClassId;
   created: SDateTime;
-  creator: PrincipalId;
+  creator: DecafPrincipalId;
   updated: SDateTime;
-  updater: PrincipalId;
+  updater: DecafPrincipalId;
   guid: string;
-  portfolio: PortfolioId;
+  portfolio: DecafPortfolioId;
   name: string;
   currency: CurrencyCode;
   isin?: string;
@@ -106,11 +106,11 @@ export interface RemoteValuationShareClass {
   subredperiod?: string;
   freqmngt?: number;
   freqperf?: number;
-  benchmark?: OhlcSeriesId;
+  benchmark?: DecafOhlcSeriesId;
   description?: string;
-  feeschedules: ShareClassFeeScheduleId[];
-  effectivefeeschedule?: ShareClassFeeScheduleId;
-  subscriptions: ActionId[];
+  feeschedules: DecafShareClassFeeScheduleId[];
+  effectivefeeschedule?: DecafShareClassFeeScheduleId;
+  subscriptions: DecafActionId[];
   outstanding?: number;
 }
 
@@ -119,14 +119,14 @@ export interface RemoteValuationShareClass {
  * report.
  */
 export interface RemoteValuationExternalValue {
-  id: ExternalValuationId;
+  id: DecafExternalValuationId;
   created: SDateTime;
-  creator: PrincipalId;
+  creator: DecafPrincipalId;
   updated: SDateTime;
-  updater: PrincipalId;
+  updater: DecafPrincipalId;
   guid: string;
-  portfolio: PortfolioId;
-  shareclass?: ShareClassId;
+  portfolio: DecafPortfolioId;
+  shareclass?: DecafShareClassId;
   date: SDate;
   ccy: CurrencyCode;
   shares?: number;
@@ -203,7 +203,7 @@ export function toShareClassValue(x: RemoteValuationShareClassValue): PortfolioV
       feeScheduleIds: x.shareclass.feeschedules,
       effectiveFeeScheduleId: Maybe.fromNullable(x.shareclass.effectivefeeschedule),
       subscriptionIds: x.shareclass.subscriptions,
-      outstanding: maybeDecimal(x.shareclass.outstanding),
+      outstanding: decimalFromNullable(x.shareclass.outstanding),
     },
     external: Maybe.fromNullable(x.external).map((ev) => ({
       id: ev.id,
@@ -216,36 +216,36 @@ export function toShareClassValue(x: RemoteValuationShareClassValue): PortfolioV
       shareclass: Maybe.fromNullable(ev.shareclass),
       date: ev.date,
       ccy: ev.ccy,
-      shares: maybeDecimal(ev.shares),
-      price: maybeDecimal(ev.price),
-      nav: maybeDecimal(ev.nav),
-      aum: maybeDecimal(ev.aum),
-      hedgepnl: maybeDecimal(ev.hedgepnl),
-      feemngt: maybeDecimal(ev.feemngt),
-      feeperf: maybeDecimal(ev.feeperf),
-      otheraccrued: maybeDecimal(ev.otheraccrued),
-      totalaccrued: maybeDecimal(ev.totalaccrued),
-      subred: maybeDecimal(ev.subred),
-      perfdaily: maybeDecimal(ev.perfdaily),
-      perfweekly: maybeDecimal(ev.perfweekly),
-      perfmonthly: maybeDecimal(ev.perfmonthly),
-      perfytd: maybeDecimal(ev.perfytd),
-      perfstart: maybeDecimal(ev.perfstart),
-      coefficient: maybeDecimal(ev.coefficient),
+      shares: decimalFromNullable(ev.shares),
+      price: decimalFromNullable(ev.price),
+      nav: decimalFromNullable(ev.nav),
+      aum: decimalFromNullable(ev.aum),
+      hedgepnl: decimalFromNullable(ev.hedgepnl),
+      feemngt: decimalFromNullable(ev.feemngt),
+      feeperf: decimalFromNullable(ev.feeperf),
+      otheraccrued: decimalFromNullable(ev.otheraccrued),
+      totalaccrued: decimalFromNullable(ev.totalaccrued),
+      subred: decimalFromNullable(ev.subred),
+      perfdaily: decimalFromNullable(ev.perfdaily),
+      perfweekly: decimalFromNullable(ev.perfweekly),
+      perfmonthly: decimalFromNullable(ev.perfmonthly),
+      perfytd: decimalFromNullable(ev.perfytd),
+      perfstart: decimalFromNullable(ev.perfstart),
+      coefficient: decimalFromNullable(ev.coefficient),
     })),
-    nav: asDecimal(x.nav),
-    navAdjusted: asDecimal(x.nav_adjusted),
-    navAdjustedTotal: asDecimal(x.nav_adjusted_total),
-    coefficient: asDecimal(x.coefficient),
-    gavRefccy: asDecimal(x.gav_refccy),
-    gavClsccy: asDecimal(x.gav_clsccy),
-    sharecountPrev: asDecimal(x.sharecount_prev),
-    sharecountCurr: asDecimal(x.sharecount_curr),
-    sharecountDiff: asDecimal(x.sharecount_diff),
-    pxRefCcy: maybeDecimal(x.px_refccy),
-    pxClsCcy: maybeDecimal(x.px_clsccy),
-    ytdExt: maybeDecimal(x.ytdext),
-    ytdInt: maybeDecimal(x.ytdint),
+    nav: unsafeDecimal(x.nav),
+    navAdjusted: unsafeDecimal(x.nav_adjusted),
+    navAdjustedTotal: unsafeDecimal(x.nav_adjusted_total),
+    coefficient: unsafeDecimal(x.coefficient),
+    gavRefccy: unsafeDecimal(x.gav_refccy),
+    gavClsccy: unsafeDecimal(x.gav_clsccy),
+    sharecountPrev: unsafeDecimal(x.sharecount_prev),
+    sharecountCurr: unsafeDecimal(x.sharecount_curr),
+    sharecountDiff: unsafeDecimal(x.sharecount_diff),
+    pxRefCcy: decimalFromNullable(x.px_refccy),
+    pxClsCcy: decimalFromNullable(x.px_clsccy),
+    ytdExt: decimalFromNullable(x.ytdext),
+    ytdInt: decimalFromNullable(x.ytdint),
   };
 }
 
@@ -268,7 +268,7 @@ export function recompilePortfolioValuationReport(
     return {
       ...report,
       portfolio: x.portfolio,
-      subscriptions: maybeDecimal(x.subscriptions).orDefault(zero),
+      subscriptions: decimalFromNullable(x.subscriptions).orDefault(zero),
       shareClassValues: x.scvals.map(toShareClassValue),
     };
   });

@@ -1,7 +1,7 @@
 import { buildDecafClient, DecafClient, gql } from '@decafhub/decaf-client';
-import { mk, PDateTime, safeDiv, zero } from '@telostat/prelude';
+import { PDateTime, safeDiv, zero } from '@telostat/prelude';
 import { fail } from 'assert';
-import { PortfolioId } from './commons';
+import { DecafPortfolioId, mkCurrencyCodeError } from './commons';
 import { makeValuationReportHoldingsTree } from './reports/valuation/';
 import {
   fetchPortfolioValuationReport,
@@ -23,7 +23,7 @@ const FIRST_PORTFOLIO_QUERY = gql`
 
 describe('Main', () => {
   let client: DecafClient;
-  let portfolioId: PortfolioId;
+  let portfolioId: DecafPortfolioId;
 
   beforeAll(() => {
     jest.resetModules();
@@ -56,7 +56,7 @@ describe('Main', () => {
       portfolio: portfolioId,
       date: PDateTime(new Date()).format('YYYY-MM-DD'),
       dateType: 'settlement',
-      currency: mk('EUR'),
+      currency: mkCurrencyCodeError('EUR'),
     });
     eValue.caseOf({
       Left: (e) => fail('Error while fetching the remote portfolio report: ' + e.msg),
@@ -74,7 +74,7 @@ describe('Main', () => {
       portfolio: portfolioId,
       date: PDateTime(new Date()).format('YYYY-MM-DD'),
       dateType: 'settlement',
-      currency: mk('EUR'),
+      currency: mkCurrencyCodeError('EUR'),
     });
     eValue.caseOf({
       Left: (e) => fail('Error while fetching the remote portfolio report: ' + e.msg),

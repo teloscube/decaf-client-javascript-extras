@@ -1,5 +1,12 @@
 import { Decimal, Maybe, SDate, SDateTime } from '@telostat/prelude';
-import { AccountId, ArtifactId, ArtifactTypeId, CurrencyCode, DateType, PortfolioId } from '../../commons';
+import {
+  CurrencyCode,
+  DateType,
+  DecafAccountId,
+  DecafArtifactId,
+  DecafArtifactTypeId,
+  DecafPortfolioId,
+} from '../../commons';
 
 /**
  * Type definition for base valuation report.
@@ -33,7 +40,7 @@ export interface BaseValuationReport {
  * Type definition for account reference in valuation reports.
  */
 export interface ValuationReportAccount {
-  id: AccountId;
+  id: DecafAccountId;
   guid: string;
   name: string;
 }
@@ -42,7 +49,7 @@ export interface ValuationReportAccount {
  * Type definition for portfolio reference in valuation reports.
  */
 export interface ValuationReportPortfolio {
-  id: PortfolioId;
+  id: DecafPortfolioId;
   guid: string;
   name: string;
 }
@@ -181,7 +188,7 @@ export interface ValuationReportAccrualByCurrency {
  * Type definition of the FINREA artifact type.
  */
 export interface ValuationReportArtifactType {
-  id: ArtifactTypeId;
+  id: DecafArtifactTypeId;
   name: string;
   order: number;
 }
@@ -190,7 +197,7 @@ export interface ValuationReportArtifactType {
  * Type definition for the artifact as reported in the valuation.
  */
 export interface ValuationReportArtifact {
-  id: ArtifactId;
+  id: DecafArtifactId;
   guid: string;
   type: ValuationReportArtifactType;
   stype: Maybe<string>;
@@ -206,7 +213,7 @@ export interface ValuationReportArtifact {
   isin: Maybe<string>;
   figi: Maybe<string>;
   expiry: Maybe<SDate>;
-  underlyingId: Maybe<ArtifactId>;
+  underlyingId: Maybe<DecafArtifactId>;
 }
 
 export interface ValuationReportFxRate {

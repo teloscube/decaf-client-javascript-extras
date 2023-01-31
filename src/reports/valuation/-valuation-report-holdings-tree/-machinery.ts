@@ -1,8 +1,6 @@
-import { Decimal, safeDiv, sumDecimals, Tuple, zero } from '@telostat/prelude';
-import { Just, Maybe, Nothing } from 'purify-ts';
-import { List } from 'purify-ts/List';
+import { Decimal, Just, List, Maybe, Nothing, safeDiv, sumDecimals, Tuple, zero } from '@telostat/prelude';
 import { ValuationReportHolding, ValuationReportHoldingClassification } from '../-valuation-report-shared';
-import { ArtifactTypeId } from '../../../commons';
+import { DecafArtifactTypeId } from '../../../commons';
 import { ValuationReportHoldingsTreeNode, ValuationReportHoldingsTreeNodeValue } from './-types';
 import { compareStringArrays } from './-utils';
 
@@ -41,9 +39,9 @@ export function updateTotals(
   const holdingsForExposure = holdings.filter(
     (h) =>
       !(
-        h.artifact.type.id === ('CCY' as unknown as ArtifactTypeId) ||
-        h.artifact.type.id === ('DEPO' as unknown as ArtifactTypeId) ||
-        h.artifact.type.id === ('LOAN' as unknown as ArtifactTypeId)
+        h.artifact.type.id === ('CCY' as unknown as DecafArtifactTypeId) ||
+        h.artifact.type.id === ('DEPO' as unknown as DecafArtifactTypeId) ||
+        h.artifact.type.id === ('LOAN' as unknown as DecafArtifactTypeId)
       )
   );
 

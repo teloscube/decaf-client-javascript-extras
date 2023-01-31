@@ -832,10 +832,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@telostat/prelude@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@telostat/prelude/-/prelude-0.1.2.tgz#4f537240c8eb9b82a69ce6f754e24f95294f4c34"
-  integrity sha512-0JU2FIbPZZQ7MVtKzwikyg0xH0fMgKU+g+qxfSuo3iGw9qHYb/wMX6ZokzHFcq6UrikoydXOiE+N9EuEm6QpHQ==
+"@telostat/prelude@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@telostat/prelude/-/prelude-0.2.0.tgz#215727250545a3ee2b5ed8f449da0df2be78cae3"
+  integrity sha512-BazPhxUU24t7lBfeJvkZjQ+AaPRZ/UlInEmcB2Hp6/UjwlVQUzFY/8hufcopWY8scaBPVy4II2NhNkImP3X1TA==
   dependencies:
     dayjs "^1.11.7"
     decimal.js "^10.4.3"
