@@ -13,7 +13,7 @@ import {
   SDateTime,
   zero,
 } from '@telostat/prelude';
-import { ArtifactId, ArtifactTypeId, CurrencyCode, DateType } from '../../commons';
+import { CurrencyCode, DateType, DecafArtifactId, DecafArtifactTypeId } from '../../commons';
 import {
   BaseValuationReport,
   BaseValuationReportHolding,
@@ -124,9 +124,9 @@ export interface RemoteValuationReportChildHolding {
  * Valuation artifact.
  */
 export interface RemoteValuationReportArtifact {
-  id: ArtifactId;
+  id: DecafArtifactId;
   guid: string;
-  type: { id: ArtifactTypeId; name: string; order: number };
+  type: { id: DecafArtifactTypeId; name: string; order: number };
   stype?: string;
   symbol: string;
   name?: string;
@@ -140,7 +140,7 @@ export interface RemoteValuationReportArtifact {
   isin?: string;
   figi?: string;
   expiry?: SDate;
-  underlying_id?: ArtifactId;
+  underlying_id?: DecafArtifactId;
 }
 
 /**

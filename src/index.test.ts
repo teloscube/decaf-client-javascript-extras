@@ -1,7 +1,7 @@
 import { buildDecafClient, DecafClient, gql } from '@decafhub/decaf-client';
 import { PDateTime, safeDiv, zero } from '@telostat/prelude';
 import { fail } from 'assert';
-import { PortfolioId, mkCurrencyCodeError } from './commons';
+import { DecafPortfolioId, mkCurrencyCodeError } from './commons';
 import { makeValuationReportHoldingsTree } from './reports/valuation/';
 import {
   fetchPortfolioValuationReport,
@@ -23,7 +23,7 @@ const FIRST_PORTFOLIO_QUERY = gql`
 
 describe('Main', () => {
   let client: DecafClient;
-  let portfolioId: PortfolioId;
+  let portfolioId: DecafPortfolioId;
 
   beforeAll(() => {
     jest.resetModules();

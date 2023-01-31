@@ -1,13 +1,13 @@
 import { Decimal, Maybe, SDate, SDateTime } from '@telostat/prelude';
 import {
-  ActionId,
+  DecafActionId,
   CurrencyCode,
-  ExternalValuationId,
-  OhlcSeriesId,
-  PortfolioId,
-  PrincipalId,
-  ShareClassFeeScheduleId,
-  ShareClassId,
+  DecafExternalValuationId,
+  DecafOhlcSeriesId,
+  DecafPortfolioId,
+  DecafPrincipalId,
+  DecafShareClassFeeScheduleId,
+  DecafShareClassId,
 } from '../../commons';
 import { BaseValuationReport, ValuationReportPortfolio } from './-valuation-report-shared';
 
@@ -36,13 +36,13 @@ export interface PortfolioValuationReportShareClassValue {
 }
 
 export interface PortfolioValuationReportShareClass {
-  id: ShareClassId;
+  id: DecafShareClassId;
   created: SDateTime;
-  creator: Maybe<PrincipalId>;
+  creator: Maybe<DecafPrincipalId>;
   updated: SDateTime;
-  updater: Maybe<PrincipalId>;
+  updater: Maybe<DecafPrincipalId>;
   guid: string;
-  portfolio: PortfolioId;
+  portfolio: DecafPortfolioId;
   name: string;
   currency: CurrencyCode;
   isin: Maybe<string>;
@@ -54,23 +54,23 @@ export interface PortfolioValuationReportShareClass {
   subscriptionRedemptionPeriod: Maybe<string>;
   managementFeeFrequency: Maybe<number>;
   performanceFeeFrequency: Maybe<number>;
-  benchmark: Maybe<OhlcSeriesId>;
+  benchmark: Maybe<DecafOhlcSeriesId>;
   description: Maybe<string>;
-  feeScheduleIds: ShareClassFeeScheduleId[];
-  effectiveFeeScheduleId: Maybe<ShareClassFeeScheduleId>;
-  subscriptionIds: ActionId[];
+  feeScheduleIds: DecafShareClassFeeScheduleId[];
+  effectiveFeeScheduleId: Maybe<DecafShareClassFeeScheduleId>;
+  subscriptionIds: DecafActionId[];
   outstanding: Maybe<Decimal>;
 }
 
 export interface PortfolioValuationReportExternalValue {
-  id: ExternalValuationId;
+  id: DecafExternalValuationId;
   created: SDateTime;
-  creator: Maybe<PrincipalId>;
+  creator: Maybe<DecafPrincipalId>;
   updated: SDateTime;
-  updater: Maybe<PrincipalId>;
+  updater: Maybe<DecafPrincipalId>;
   guid: string;
-  portfolio: PortfolioId;
-  shareclass: Maybe<ShareClassId>;
+  portfolio: DecafPortfolioId;
+  shareclass: Maybe<DecafShareClassId>;
   date: SDate;
   ccy: CurrencyCode;
   shares: Maybe<Decimal>;

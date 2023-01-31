@@ -14,15 +14,15 @@ import {
   zero,
 } from '@telostat/prelude';
 import {
-  ActionId,
   CurrencyCode,
   DateType,
-  ExternalValuationId,
-  OhlcSeriesId,
-  PortfolioId,
-  PrincipalId,
-  ShareClassFeeScheduleId,
-  ShareClassId,
+  DecafActionId,
+  DecafExternalValuationId,
+  DecafOhlcSeriesId,
+  DecafPortfolioId,
+  DecafPrincipalId,
+  DecafShareClassFeeScheduleId,
+  DecafShareClassId,
 } from '../../commons';
 import { recompileBaseValuationReport, RemoteBaseValuationReport } from './-remote-valuation-report-shared';
 import { PortfolioValuationReport, PortfolioValuationReportShareClassValue } from './-valuation-report-portfolio';
@@ -50,7 +50,7 @@ export interface PortfolioValuationReportQuery {
   /**
    * Portfolio the valuation report is requested for.
    */
-  portfolio: PortfolioId;
+  portfolio: DecafPortfolioId;
 }
 
 /**
@@ -88,13 +88,13 @@ export interface RemoteValuationShareClassValue {
  * Type definition for share class on the remote portfolio valuation report.
  */
 export interface RemoteValuationShareClass {
-  id: ShareClassId;
+  id: DecafShareClassId;
   created: SDateTime;
-  creator: PrincipalId;
+  creator: DecafPrincipalId;
   updated: SDateTime;
-  updater: PrincipalId;
+  updater: DecafPrincipalId;
   guid: string;
-  portfolio: PortfolioId;
+  portfolio: DecafPortfolioId;
   name: string;
   currency: CurrencyCode;
   isin?: string;
@@ -106,11 +106,11 @@ export interface RemoteValuationShareClass {
   subredperiod?: string;
   freqmngt?: number;
   freqperf?: number;
-  benchmark?: OhlcSeriesId;
+  benchmark?: DecafOhlcSeriesId;
   description?: string;
-  feeschedules: ShareClassFeeScheduleId[];
-  effectivefeeschedule?: ShareClassFeeScheduleId;
-  subscriptions: ActionId[];
+  feeschedules: DecafShareClassFeeScheduleId[];
+  effectivefeeschedule?: DecafShareClassFeeScheduleId;
+  subscriptions: DecafActionId[];
   outstanding?: number;
 }
 
@@ -119,14 +119,14 @@ export interface RemoteValuationShareClass {
  * report.
  */
 export interface RemoteValuationExternalValue {
-  id: ExternalValuationId;
+  id: DecafExternalValuationId;
   created: SDateTime;
-  creator: PrincipalId;
+  creator: DecafPrincipalId;
   updated: SDateTime;
-  updater: PrincipalId;
+  updater: DecafPrincipalId;
   guid: string;
-  portfolio: PortfolioId;
-  shareclass?: ShareClassId;
+  portfolio: DecafPortfolioId;
+  shareclass?: DecafShareClassId;
   date: SDate;
   ccy: CurrencyCode;
   shares?: number;
