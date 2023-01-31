@@ -1,3 +1,3 @@
 export * from './-currency';
-export * from './-date-type';
+export * from './-datetype';
 export * from './-id';
