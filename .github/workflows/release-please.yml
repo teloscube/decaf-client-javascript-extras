@@ -7,9 +7,10 @@ name: release-please
 jobs:
   release-please:
     runs-on: ${{ matrix.os }}
-    matrix:
-      node: [16]
-      os: [ubuntu-latest]
+    strategy:
+      matrix:
+        node: [16]
+        os: [ubuntu-latest]
     steps:
       - uses: google-github-actions/release-please-action@v3
         id: release
