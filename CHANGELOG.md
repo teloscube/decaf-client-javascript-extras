@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.0](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.1.1...v0.2.0) (2023-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* make minimum supported node version 16
+
+### Miscellaneous Chores
+
+* make minimum supported node version 16 ([ce38994](https://github.com/teloscube/decaf-client-javascript-extras/commit/ce38994cd38868821beb9ad7b2a466c32e8aa50a))
+
 ## [0.1.1](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.1.0...v0.1.1) (2023-04-02)
 
 
