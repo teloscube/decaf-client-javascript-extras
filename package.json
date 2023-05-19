@@ -17,30 +17,30 @@
   "scripts": {
     "start": "tsc --watch",
     "test": "jest",
-    "build": "rm -rf lib && tsc && tsc -p tsconfig.es.json && yarn make:docs",
+    "build": "rm -rf lib && tsc && tsc -p tsconfig.es.json && npm run make:docs",
     "make:docs": "typedoc",
     "deploy:docs": "gh-pages -d ./docs",
-    "prepare": "yarn build && ./postinstall.sh"
+    "prepare": "npm run build && ./postinstall.sh"
   },
   "engines": {
     "node": ">=16"
   },
   "peerDependencies": {
-    "@decafhub/decaf-client": "^0.3.1"
+    "@decafhub/decaf-client": "^0.4"
   },
   "dependencies": {
-    "@telostat/prelude": "^0.2.0"
+    "@telostat/prelude": "^0.3.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.5.1",
-    "@commitlint/config-conventional": "^17.4.4",
-    "@decafhub/decaf-client": "^0.3.2",
-    "@types/jest": "^29.5.0",
-    "@types/node": "^18.15.11",
-    "@typescript-eslint/eslint-plugin": "^5.57.0",
-    "@typescript-eslint/parser": "^5.57.0",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@decafhub/decaf-client": "^0.4.0",
+    "@types/jest": "^29.5.1",
+    "@types/node": "^20.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
     "dotenv": "^16.0.3",
-    "eslint": "^8.37.0",
+    "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
@@ -51,11 +51,11 @@
     "gh-pages": "^5.0.0",
     "husky": "^8.0.3",
     "jest": "^29.5.0",
-    "lint-staged": "^13.2.0",
-    "prettier": "^2.8.7",
-    "ts-jest": "^29.0.5",
-    "typedoc": "^0.23.28",
-    "typescript": "^5.0.3"
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "ts-jest": "^29.1.0",
+    "typedoc": "^0.24.7",
+    "typescript": "^5.0.4"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [

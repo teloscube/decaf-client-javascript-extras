@@ -6,7 +6,7 @@ if [ -f .env ]; then
 fi
 
 if [ -n "$DECAF_JS_SKIP_POSTINSTALL" ]; then
-  yarn husky install
+  npx --no -- husky install
   echo "Local Env detected. Skipping lib/ relocation..."
   exit 0
 fi

@@ -31,7 +31,6 @@ let
   deps = [
     pkgs.git
     pkgs.nodejs
-    pkgs.yarn
 
     devshell
   ];

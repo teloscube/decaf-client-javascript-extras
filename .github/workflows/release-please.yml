@@ -20,18 +20,18 @@ jobs:
         with:
           node-version: 'lts/*'
           registry-url: 'https://registry.npmjs.org'
-          cache: 'yarn'
+          cache: 'npm'
         if: ${{ steps.release.outputs.release_created }}
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
         if: ${{ steps.release.outputs.release_created }}
         env:
           DECAF_JS_SKIP_POSTINSTALL: 1
           HUSKY: 0
 
       - name: Build the project and generate docs
-        run: yarn build
+        run: npm run build
         if: ${{ steps.release.outputs.release_created }}
 
       - name: Deploy docs to gh-pages
@@ -41,7 +41,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
 
-      - run: yarn publish --access=public
+      - run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{secrets.DECAFHUB_NPM_TOKEN}}
         if: ${{ steps.release.outputs.release_created }}

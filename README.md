@@ -12,13 +12,7 @@ Install @decafhub/decaf-client-extras along with its peer dependency @decafhub/d
 npm install --save @decafhub/decaf-client-extras @decafhub/decaf-client
 ```
 
-Or with yarn:
-
-```bash
-yarn add @decafhub/decaf-client-extras @decafhub/decaf-client
-```
-
 ## Testing
 
 - Duplicate the `.env.example` file to `.env` and fill in the values.
-- Run `yarn test` to run the tests.
+- Run `npm test` to run the tests.
