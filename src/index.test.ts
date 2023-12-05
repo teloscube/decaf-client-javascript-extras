@@ -1,6 +1,7 @@
 import { buildDecafClient, DecafClient, gql } from '@decafhub/decaf-client';
-import { PDateTime, safeDiv, zero } from '@telostat/prelude';
+import { safeDiv, zero } from '@telostat/prelude';
 import { fail } from 'assert';
+import dayjs from 'dayjs';
 import { DecafPortfolioId, mkCurrencyCodeError } from './commons';
 import { makeValuationReportHoldingsTree } from './reports/valuation/';
 import {
@@ -54,7 +55,7 @@ describe('Main', () => {
   test('get a remote portfolio report successfuly', async () => {
     const eValue = await fetchRemotePortfolioValuationReport(client, {
       portfolio: portfolioId,
-      date: PDateTime(new Date()).format('YYYY-MM-DD'),
+      date: dayjs(new Date()).format('YYYY-MM-DD'),
       dateType: 'settlement',
       currency: mkCurrencyCodeError('EUR'),
     });
@@ -72,7 +73,7 @@ describe('Main', () => {
   test('get a portfolio report, check the tree', async () => {
     const eValue = await fetchPortfolioValuationReport(client, {
       portfolio: portfolioId,
-      date: PDateTime(new Date()).format('YYYY-MM-DD'),
+      date: dayjs(new Date()).format('YYYY-MM-DD'),
       dateType: 'settlement',
       currency: mkCurrencyCodeError('EUR'),
     });
