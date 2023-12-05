@@ -6,10 +6,10 @@
 
 ## Install
 
-Install @decafhub/decaf-client-extras along with its peer dependency @decafhub/decaf-client:
+Install `@decafhub/decaf-client-extras` along with its peer dependencies:
 
 ```bash
-npm install --save @decafhub/decaf-client-extras @decafhub/decaf-client
+npm install --save dayjs @decafhub/decaf-client @decafhub/decaf-client-extras
 ```
 
 ## Testing
