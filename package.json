@@ -23,7 +23,7 @@
     "prepare": "npm run build && ./postinstall.sh"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "peerDependencies": {
     "@decafhub/decaf-client": "^0.5"
