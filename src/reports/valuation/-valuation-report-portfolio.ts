@@ -18,17 +18,17 @@ export interface PortfolioValuationReport extends BaseValuationReport {
 }
 
 export interface PortfolioValuationReportShareClassValue {
-  shareclass: PortfolioValuationReportShareClass;
-  external: Maybe<PortfolioValuationReportExternalValue>;
+  shareclass?: PortfolioValuationReportShareClass;
+  external?: PortfolioValuationReportExternalValue;
   nav: Decimal;
   navAdjusted: Decimal;
   navAdjustedTotal: Decimal;
   coefficient: Decimal;
   gavRefccy: Decimal;
   gavClsccy: Decimal;
-  sharecountPrev: Decimal;
-  sharecountCurr: Decimal;
-  sharecountDiff: Decimal;
+  sharecountPrev?: Decimal;
+  sharecountCurr?: Decimal;
+  sharecountDiff?: Decimal;
   pxRefCcy: Maybe<Decimal>;
   pxClsCcy: Maybe<Decimal>;
   ytdExt: Maybe<Decimal>;
