@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.0](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.3.0...v0.4.0) (2024-03-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* fix various type issues due to DECAF Barista v2 release
+
+### Bug Fixes
+
+* fix various type issues due to DECAF Barista v2 release ([f15d9ac](https://github.com/teloscube/decaf-client-javascript-extras/commit/f15d9ac523b4911abd7fc9705803fd85e0e0acb5))
+
 ## [0.3.0](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.2.0...v0.3.0) (2023-12-05)
 
 
