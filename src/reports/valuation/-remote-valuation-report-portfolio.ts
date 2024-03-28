@@ -67,7 +67,7 @@ export interface RemotePortfolioValuationReport extends RemoteBaseValuationRepor
  * report.
  */
 export interface RemoteValuationShareClassValue {
-  shareclass: RemoteValuationShareClass;
+  shareclass?: RemoteValuationShareClass;
   external?: RemoteValuationExternalValue;
   nav: number;
   nav_adjusted: number;
@@ -177,35 +177,37 @@ export function fetchRemotePortfolioValuationReport(
  * @param x remote valuation report share class value object.
  * @return Recompiled valuation report share class value object.
  */
-export function toShareClassValue(x: RemoteValuationShareClassValue): PortfolioValuationReportShareClassValue {
+export function toShareClassValue(s: RemoteValuationShareClassValue): PortfolioValuationReportShareClassValue {
+  const shareclass = Maybe.fromNullable(s.shareclass).map((x) => ({
+    id: x.id,
+    created: x.created,
+    creator: Maybe.fromNullable(x.creator),
+    updated: x.updated,
+    updater: Maybe.fromNullable(x.updater),
+    guid: x.guid,
+    portfolio: x.portfolio,
+    name: x.name,
+    currency: x.currency,
+    isin: sanitizedNonEmptyText(x.isin),
+    bbgticker: sanitizedNonEmptyText(x.bbgticker),
+    liquidity: sanitizedNonEmptyText(x.liquidity),
+    jurisdiction: sanitizedNonEmptyText(x.jurisdiction),
+    administrator: sanitizedNonEmptyText(x.administrator),
+    minimumInvestment: Maybe.fromNullable(x.mininvestment),
+    subscriptionRedemptionPeriod: sanitizedNonEmptyText(x.subredperiod),
+    managementFeeFrequency: Maybe.fromNullable(x.freqmngt),
+    performanceFeeFrequency: Maybe.fromNullable(x.freqperf),
+    benchmark: Maybe.fromNullable(x.benchmark),
+    description: sanitizedNonEmptyText(x.description),
+    feeScheduleIds: x.feeschedules,
+    effectiveFeeScheduleId: Maybe.fromNullable(x.effectivefeeschedule),
+    subscriptionIds: x.subscriptions,
+    outstanding: decimalFromNullable(x.outstanding),
+  }));
+
   return {
-    shareclass: {
-      id: x.shareclass.id,
-      created: x.shareclass.created,
-      creator: Maybe.fromNullable(x.shareclass.creator),
-      updated: x.shareclass.updated,
-      updater: Maybe.fromNullable(x.shareclass.updater),
-      guid: x.shareclass.guid,
-      portfolio: x.shareclass.portfolio,
-      name: x.shareclass.name,
-      currency: x.shareclass.currency,
-      isin: sanitizedNonEmptyText(x.shareclass.isin),
-      bbgticker: sanitizedNonEmptyText(x.shareclass.bbgticker),
-      liquidity: sanitizedNonEmptyText(x.shareclass.liquidity),
-      jurisdiction: sanitizedNonEmptyText(x.shareclass.jurisdiction),
-      administrator: sanitizedNonEmptyText(x.shareclass.administrator),
-      minimumInvestment: Maybe.fromNullable(x.shareclass.mininvestment),
-      subscriptionRedemptionPeriod: sanitizedNonEmptyText(x.shareclass.subredperiod),
-      managementFeeFrequency: Maybe.fromNullable(x.shareclass.freqmngt),
-      performanceFeeFrequency: Maybe.fromNullable(x.shareclass.freqperf),
-      benchmark: Maybe.fromNullable(x.shareclass.benchmark),
-      description: sanitizedNonEmptyText(x.shareclass.description),
-      feeScheduleIds: x.shareclass.feeschedules,
-      effectiveFeeScheduleId: Maybe.fromNullable(x.shareclass.effectivefeeschedule),
-      subscriptionIds: x.shareclass.subscriptions,
-      outstanding: decimalFromNullable(x.shareclass.outstanding),
-    },
-    external: Maybe.fromNullable(x.external).map((ev) => ({
+    shareclass,
+    external: Maybe.fromNullable(s.external).map((ev) => ({
       id: ev.id,
       created: ev.created,
       creator: Maybe.fromNullable(ev.updater),
@@ -233,19 +235,19 @@ export function toShareClassValue(x: RemoteValuationShareClassValue): PortfolioV
       perfstart: decimalFromNullable(ev.perfstart),
       coefficient: decimalFromNullable(ev.coefficient),
     })),
-    nav: unsafeDecimal(x.nav),
-    navAdjusted: unsafeDecimal(x.nav_adjusted),
-    navAdjustedTotal: unsafeDecimal(x.nav_adjusted_total),
-    coefficient: unsafeDecimal(x.coefficient),
-    gavRefccy: unsafeDecimal(x.gav_refccy),
-    gavClsccy: unsafeDecimal(x.gav_clsccy),
-    sharecountPrev: unsafeDecimal(x.sharecount_prev),
-    sharecountCurr: unsafeDecimal(x.sharecount_curr),
-    sharecountDiff: unsafeDecimal(x.sharecount_diff),
-    pxRefCcy: decimalFromNullable(x.px_refccy),
-    pxClsCcy: decimalFromNullable(x.px_clsccy),
-    ytdExt: decimalFromNullable(x.ytdext),
-    ytdInt: decimalFromNullable(x.ytdint),
+    nav: unsafeDecimal(s.nav),
+    navAdjusted: unsafeDecimal(s.nav_adjusted),
+    navAdjustedTotal: unsafeDecimal(s.nav_adjusted_total),
+    coefficient: unsafeDecimal(s.coefficient),
+    gavRefccy: unsafeDecimal(s.gav_refccy),
+    gavClsccy: unsafeDecimal(s.gav_clsccy),
+    sharecountPrev: Maybe.fromNullable(s.sharecount_prev).map(unsafeDecimal),
+    sharecountCurr: Maybe.fromNullable(s.sharecount_curr).map(unsafeDecimal),
+    sharecountDiff: Maybe.fromNullable(s.sharecount_diff).map(unsafeDecimal),
+    pxRefCcy: decimalFromNullable(s.px_refccy),
+    pxClsCcy: decimalFromNullable(s.px_clsccy),
+    ytdExt: decimalFromNullable(s.ytdext),
+    ytdInt: decimalFromNullable(s.ytdint),
   };
 }
 
