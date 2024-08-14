@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.5.0](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.4.0...v0.5.0) (2024-08-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop support for Node 16 and add Node 22
+
+### Features
+
+* implement account valuation report ([26cb078](https://github.com/teloscube/decaf-client-javascript-extras/commit/26cb078a3e9a13811366be1f22b25326bdc79fa9))
+
+
+### Miscellaneous Chores
+
+* drop support for Node 16 and add Node 22 ([e23f398](https://github.com/teloscube/decaf-client-javascript-extras/commit/e23f398d19e1c95630e690ed8323e0561afae787))
+
 ## [0.4.0](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.3.0...v0.4.0) (2024-03-28)
 
 
