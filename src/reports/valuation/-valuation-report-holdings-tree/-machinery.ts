@@ -1,8 +1,12 @@
 import { Decimal, Just, List, Maybe, Nothing, safeDiv, sumDecimals, Tuple, zero } from '@telostat/prelude';
 import { ValuationReportHolding, ValuationReportHoldingClassification } from '../-valuation-report-shared';
 import { DecafArtifactTypeId } from '../../../commons';
-import { ValuationReportHoldingsTreeNode, ValuationReportHoldingsTreeNodeValue } from './-types';
-import { compareStringArrays } from './-utils';
+import {
+  AvailableAddresserKeys,
+  ValuationReportHoldingsTreeNode,
+  ValuationReportHoldingsTreeNodeValue,
+} from './-types';
+import { addressers, compareStringArrays } from './-utils';
 
 export function makeValuationReportHoldingsTreeNodeValue(): ValuationReportHoldingsTreeNodeValue {
   return {
@@ -161,7 +165,8 @@ export function addValuationReportHoldingToTree(
 export function makeValuationReportHoldingsTree(
   nav: Decimal,
   investment: Decimal,
-  holdings: ValuationReportHolding[]
+  holdings: ValuationReportHolding[],
+  addressKey: AvailableAddresserKeys = 'classification'
 ): ValuationReportHoldingsTreeNode {
   // Initialize the tree:
   const tree = makeValuationReportHoldingsTreeNode([]);
@@ -169,7 +174,10 @@ export function makeValuationReportHoldingsTree(
 
   // Iterate over the holdings and attempt to add to the tree:
   for (const holding of holdings) {
-    addValuationReportHoldingToTree(tree, holding.classification, holding);
+    // Get the address of the holding:
+    const address = addressers[addressKey](holding);
+
+    addValuationReportHoldingToTree(tree, address, holding);
   }
 
   // Retreat the tree:
