@@ -23,3 +23,13 @@ export interface ValuationReportHoldingsTreeNodeValue {
   pnl: Decimal;
   pnlRatio: Decimal;
 }
+
+// export interface HoldingAddressSegment {
+//   value: string;
+//   label: string;
+//   order: string | number;
+// }
+
+export type HoldingAddress = ValuationReportHoldingClassification; // HoldingAddressSegment[];
+export type HoldingAddresser = (holding: ValuationReportHolding) => HoldingAddress;
+export type AvailableAddresserKeys = 'classification' | 'currency' | 'country' | 'issuer' | 'sector';

@@ -154,7 +154,7 @@ describe('Reports', () => {
         const nav = value.figures.nav;
         const inv = value.figures.investment;
         const holdings = value.holdings;
-        const tree = makeValuationReportHoldingsTree(nav, inv, holdings);
+        const tree = makeValuationReportHoldingsTree(nav, inv, holdings, 'country');
         expect(tree).toBeDefined();
         expect(safeDiv(tree.totals.netExposure, nav).orDefault(zero)).toEqual(tree.totals.netExposureRatio);
       },
