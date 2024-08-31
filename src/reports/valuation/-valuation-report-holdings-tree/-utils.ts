@@ -35,7 +35,7 @@ export function makeSimpleAddresser(
     const value = label.toUpperCase();
 
     // Done, return:
-    return [{ name: value, order: def }];
+    return [{ name: value, order: value }];
   };
 }
 
