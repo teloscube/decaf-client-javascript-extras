@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.5.0...v0.5.1) (2024-08-31)
+
+
+### Bug Fixes
+
+* make grouping option configurable for holdings tree function ([ae97991](https://github.com/teloscube/decaf-client-javascript-extras/commit/ae97991f23393d04d85f782baedbd635a247db88))
+
 ## [0.5.0](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.4.0...v0.5.0) (2024-08-14)
 
 
