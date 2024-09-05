@@ -30,33 +30,35 @@
   },
   "dependencies": {
     "@telostat/prelude": "^0.5.0",
-    "dayjs": "^1.11.10"
+    "dayjs": "^1.11.13"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.4.3",
-    "@commitlint/config-conventional": "^18.4.3",
-    "@decafhub/decaf-client": "^0.5.0",
-    "@types/jest": "^29.5.10",
-    "@types/node": "^20.10.3",
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
-    "dotenv": "^16.3.1",
-    "eslint": "^8.55.0",
+    "@commitlint/cli": "^19.4.1",
+    "@commitlint/config-conventional": "^19.4.1",
+    "@decafhub/decaf-client": "^0.5.1",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.9.1",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.5.4",
+    "@typescript-eslint/eslint-plugin": "^8.4.0",
+    "@typescript-eslint/parser": "^8.4.0",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.9.1",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-n": "^16.3.1",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-n": "^17.10.2",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-promise": "^7.1.0",
     "eslint-plugin-standard": "^5.0.0",
-    "gh-pages": "^6.1.0",
-    "husky": "^8.0.3",
+    "gh-pages": "^6.1.1",
+    "globals": "^15.9.0",
+    "husky": "^9.1.5",
     "jest": "^29.7.0",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.1.0",
-    "ts-jest": "^29.1.1",
-    "typedoc": "^0.25.4",
-    "typescript": "^5.3.2"
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "prettier-plugin-organize-imports": "^4.0.0",
+    "ts-jest": "^29.2.5",
+    "typedoc": "^0.26.6",
+    "typescript": "^5.5.4"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
@@ -70,7 +72,10 @@
     "useTabs": false,
     "semi": true,
     "singleQuote": true,
-    "trailingComma": "es5"
+    "trailingComma": "es5",
+    "plugins": [
+      "prettier-plugin-organize-imports"
+    ]
   },
   "commitlint": {
     "extends": [
