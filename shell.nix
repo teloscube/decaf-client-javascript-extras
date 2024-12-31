@@ -4,7 +4,7 @@ stdenv.mkDerivation {
   name = "decaf-client-javascript-extras";
 
   buildInputs = with pkgs; [
-    nodejs_18
+    nodejs_20
   ];
 
   NODE_OPTIONS = "--max-old-space-size=4096";
