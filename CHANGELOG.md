@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.7.0](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.6.0...v0.7.0) (2025-04-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop support for Node 18
+
+### Miscellaneous Chores
+
+* upgrade dependencies ([c61009b](https://github.com/teloscube/decaf-client-javascript-extras/commit/c61009b1b948f76057c4a1b846f80b861dacedb4))
+
 ## [0.6.0](https://github.com/teloscube/decaf-client-javascript-extras/compare/v0.5.2...v0.6.0) (2024-12-31)
 
 
